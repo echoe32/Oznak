@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: finance_admin
+      POSTGRES_PASSWORD: secure_db_password_123!
+      POSTGRES_DB: finance_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db-init:/docker-entrypoint-initdb.d
+
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/finance_db
+      SPRING_DATASOURCE_USERNAME: finance_admin
+      SPRING_DATASOURCE_PASSWORD: secure_db_password_123!
+      JWT_SECRET: your_super_secure_random_base64_encoded_secret_key_here
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

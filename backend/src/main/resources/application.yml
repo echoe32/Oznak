@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/finance_db}
+    username: ${SPRING_DATASOURCE_USERNAME:finance_admin}
+    password: ${SPRING_DATASOURCE_PASSWORD:secure_db_password_123!}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+jwt:
+  secret: ${JWT_SECRET:default_secret_key_needs_to_be_long_enough_for_hs256}
