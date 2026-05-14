@@ -340,7 +340,7 @@ const Dashboard = () => {
                                         {editingId === tx.id ? (
                                             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:flex-wrap">
                                                 <p className="w-full text-xs text-slate-500 tabular-nums">
-                                                    <span className="font-medium text-slate-600">Добавлено:</span> {formatTxTime(tx.createdAt)} (не изменено)
+                                                    <span className="font-medium text-slate-600">Добавлено:</span> {formatTxTime(tx.createdAt)}
                                                 </p>
                                                 <div className="flex-1 min-w-[140px]">
                                                     <label className="block text-xs font-medium text-slate-500 mb-1">Сумма</label>
